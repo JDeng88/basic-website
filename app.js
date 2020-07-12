@@ -80,17 +80,21 @@ app.get('/testing_mongodb', function(req,res){
         if(err) return err;
         console.log("Connected to MongoDB!");
         const collection = client.db(DB_NAME).collection("devices"); // db is databse, collection is table
+
+        // insert one element into the table/collection
         collection.insertOne(myobj, function(err, res) {
             if (err) throw err;
             console.log("Inserted Company Inc");
         });
         console.log("Attempting to retrieve one entry...");
+
+        // retrieve one element from the table/collection
         collection.findOne({}, function(err, result) {
             if (err) throw err;
             console.log('Entry name retrieved is: ' + result.name);
         });
         
-        // count the number 
+        // count the number of items in the table
         collection.countDocuments({}, function(error, numOfDocs) {
             console.log('I have '+numOfDocs+' documents in my collection');
         });
