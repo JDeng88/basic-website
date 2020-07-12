@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
  *  Date Created: July 12, 2020
  *  Author: Justin Deng, Yuxuan Zou, Darren Wang
@@ -19,6 +20,13 @@ const MONGOD_PWD = "wewillpushforward";
 const DB_NAME = "test";
 const uri = "mongodb+srv://"+MONGOD_USER+":"+MONGOD_PWD+
             "@cluster0.jd51y.mongodb.net/"+DB_NAME+"?retryWrites=true&w=majority";
+=======
+const express = require('express'); // returns a method using express
+const app = express();              // gets an express object from the mthod
+const path = require('path');       // provides path functions
+const expressSession = require('express-session');  // allows create sessions, cookies
+const bodyParser = require('body-parser');          // allows to retrieve information from html items
+>>>>>>> 558db8b6079acd8d0cf0af0f5488adcc8974ea0b
 
 
 app.use(bodyParser.urlencoded({ extended: true })); 
@@ -32,9 +40,13 @@ app.listen(3000);       // hosted on port 3000
 var realUser; 
 var realPwd;
 
+<<<<<<< HEAD
 // GET REQUESTS, Linking html to pages ====================================================================
 // req => sending from client
 // res => recieving from server
+=======
+// GET REQUESTS, Linking html to pages
+>>>>>>> 558db8b6079acd8d0cf0af0f5488adcc8974ea0b
 app.get('/', function(req,res){
     if (!req.session.user_id) res.sendFile(path.join(__dirname+'/static/login.html'));
     else res.redirect('/dashboard');
@@ -65,6 +77,7 @@ app.post('/register_form', function(req,res){
     realPwd = req.body.reg_pwd;
     res.redirect('/');
 });
+<<<<<<< HEAD
 
 // testing MongoDB connection
 app.post('/connect', function(req,res){
@@ -98,3 +111,5 @@ app.get('/testing_mongodb', function(req,res){
     });
     client.close();
 });
+=======
+>>>>>>> 558db8b6079acd8d0cf0af0f5488adcc8974ea0b
