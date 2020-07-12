@@ -1,35 +1,22 @@
-const express = require('express'); // returns a method using express
-const app = express();              // gets an express object from the mthod
-const path = require('path');       // provides path functions
+const express = require('express');                 // returns a method using express
+const app = express();                              // gets an express object from the mthod
+const path = require('path');                       // provides path functions
 const expressSession = require('express-session');  // allows create sessions, cookies
 const bodyParser = require('body-parser');          // allows to retrieve information from html items
-const mongo = require('mongodb').MongoClient;
 
-const checkAuth = require('./authentication.js').checkAuth;
+const checkAuth = require('./authentication.js').checkAuth; // custome method from authentication.js
 
 app.use(bodyParser.urlencoded({ extended: true })); 
 app.use(expressSession({secret: '/dashboard', saveUninitialized: true, resave: false}));
-app.listen(3000);
+app.listen(3000); // hosted on port 3000
 
-// temp username and password for testing
+// temporary username and password for testing
 var realUser;
 var realPwd;
 
-/*
-// Mongodb
-const url = 'mongodb://localhost:3000';
-mongo.connect(url, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    }, (err, client) => {
-    if (err) {
-        console.error(err)
-        return
-    }
-});
-*/
-
 // GET REQUESTS, Linking html to pages
+// req => sending from client
+// res => recieving from server
 app.get('/', function(req,res){
     if (!req.session.user_id) res.sendFile(path.join(__dirname+'/static/login.html'));
     else res.redirect('/dashboard');
