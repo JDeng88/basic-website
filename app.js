@@ -35,8 +35,8 @@ app.post('/login_form', function(req,res){
     var user = req.body.log_user;
     var pwd = req.body.log_pwd;
     if(user === realUser && pwd === realPwd){
-        req.session.user_id = user;
-        req.session.cookie.maxAge = 3600000 * 6;
+        req.session.user_id = user;              // create a session with the user's username
+        req.session.cookie.maxAge = 3600000 * 6; // session expires in 6 hours
         res.redirect('/dashboard');
     }
     else res.redirect('/');
