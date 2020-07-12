@@ -3,7 +3,6 @@ const app = express();              // gets an express object from the mthod
 const path = require('path');       // provides path functions
 const expressSession = require('express-session');  // allows create sessions, cookies
 const bodyParser = require('body-parser');          // allows to retrieve information from html items
-const mongo = require('mongodb').MongoClient;
 
 const checkAuth = require('./authentication.js').checkAuth;
 
@@ -14,20 +13,6 @@ app.listen(3000);
 // temp username and password for testing
 var realUser;
 var realPwd;
-
-/*
-// Mongodb
-const url = 'mongodb://localhost:3000';
-mongo.connect(url, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    }, (err, client) => {
-    if (err) {
-        console.error(err)
-        return
-    }
-});
-*/
 
 // GET REQUESTS, Linking html to pages
 app.get('/', function(req,res){
