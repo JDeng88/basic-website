@@ -15,7 +15,7 @@ const checkAuth = require('./authentication.js').checkAuth; // custom method fro
 
 // Login information for MongoDB
 const MONGOD_USER = "madproductive";
-const MONGOD_PWD = "wewillpushforward";
+const MONGOD_PWD = "djyuckswan";
 var DB_NAME = "test"; // databse name
 var uri = "mongodb+srv://"+MONGOD_USER+":"+MONGOD_PWD+
             "@cluster0.jd51y.mongodb.net/"+DB_NAME+"?retryWrites=true&w=majority";
@@ -29,33 +29,31 @@ app.use(expressSession({secret : '/dashboard',
 app.listen(3000);       // hosted on port 3000
 
 // temporary username and password for testing
-var realUser; 
+var realEmail; 
 var realPwd;
 
 // GET REQUESTS, Linking html to pages ====================================================================
 // req => sending from client
 // res => recieving from server
 app.get('/', function(req,res){
-    console.log("id: " + req.session.user_id);
-    if (!req.session.user_id) res.sendFile(path.join(__dirname+'/static/login.html'));
+    if (!req.session.user_id) res.sendFile(path.join(__dirname+'/static/account/login/login.html'));
     else res.redirect('/dashboard');
 });
 
 app.get('/dashboard', checkAuth, function(req,res){
-    console.log("id: " + req.session.user_id);
-    res.sendFile(path.join(__dirname+'/static/dashboard.html'));
+    res.sendFile(path.join(__dirname+'/static/dashboard/dashboard.html'));
 });
 
 app.get('/register', function(req,res){
-    res.sendFile(path.join(__dirname+'/static/register.html'));
+    res.sendFile(path.join(__dirname+'/static/account/register/register.html'));
 });
 
 // POST REQUESTS ===========================================================================================
 app.post('/login_form', function(req,res){
-    var user = req.body.log_user;
+    var email = req.body.log_email;
     var pwd = req.body.log_pwd;
-    if(user === realUser && pwd === realPwd){
-        req.session.user_id = user;              // create a session with the user's username
+    if(email === realEmail && pwd === realPwd){
+        req.session.user_id = email;              // create a session with the user's username
         req.session.cookie.maxAge = 3600000 * 6; // session expires in 6 hours
         res.redirect('/dashboard');
     }
@@ -63,13 +61,13 @@ app.post('/login_form', function(req,res){
 });
 
 app.post('/register_form', function(req,res){
-    realUser = req.body.reg_user;
+    realEmail = req.body.reg_email;
     realPwd = req.body.reg_pwd;
     res.redirect('/');
 });
 
 // testing MongoDB connection
-app.post('/connect', function(req,res){
+app.post('/connect_form', function(req,res){
     res.redirect('/testing_mongodb');
 });
 
@@ -99,6 +97,12 @@ app.get('/testing_mongodb', function(req,res){
         // count the number of items in the table
         collection.countDocuments({}, function(error, numOfDocs) {
             console.log('I have '+numOfDocs+' documents in my collection');
+        });
+
+        // pretty print JSON data in MongoDB
+        collection.find({}).toArray(function(err, result) {
+            res.write(JSON.stringify(result, null, 2));
+            res.end();
         });
 
     });
