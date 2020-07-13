@@ -8,16 +8,8 @@ const saltRounds = 10;
 var validator = require("email-validator");
 
 // Login information for MongoDB
-<<<<<<< HEAD
-=======
-const MONGOD_USER = "xxxx";
-const MONGOD_PWD = "xxxxx";
-var DB_NAME = "test"; // databse name
-var uri = "mongodb+srv://"+MONGOD_USER+":"+MONGOD_PWD+
-            "@cluster0.jd51y.mongodb.net/"+DB_NAME+"?retryWrites=true&w=majority";
->>>>>>> e5d583da6193b7bde7d1b617aeea031ca3f510f9
 
-const MONGOD_USER = "xxxxxx";
+const MONGOD_USER = "xxxxx";
 const MONGOD_PWD = "xxxxxx";
 var DB_NAME_LOGIN = "login"; // database name
 var uri = "mongodb+srv://"+MONGOD_USER+":"+MONGOD_PWD+
@@ -161,7 +153,6 @@ router.get('/testing_mongodb', function(req,res){
 });
 
 module.exports = router
-<<<<<<< HEAD
 /**
  * 
  * Database
@@ -175,5 +166,3 @@ module.exports = router
  *  password (hashed)                                                   
  *  address 
  */
-=======
->>>>>>> e5d583da6193b7bde7d1b617aeea031ca3f510f9
