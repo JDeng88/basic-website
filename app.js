@@ -36,11 +36,13 @@ var realPwd;
 // req => sending from client
 // res => recieving from server
 app.get('/', function(req,res){
+    console.log("id: " + req.session.user_id);
     if (!req.session.user_id) res.sendFile(path.join(__dirname+'/static/login.html'));
     else res.redirect('/dashboard');
 });
 
 app.get('/dashboard', checkAuth, function(req,res){
+    console.log("id: " + req.session.user_id);
     res.sendFile(path.join(__dirname+'/static/dashboard.html'));
 });
 
@@ -73,7 +75,7 @@ app.post('/connect', function(req,res){
 
 app.get('/testing_mongodb', function(req,res){
     console.log("Welcome to testing platform for MongoDB!");
-    
+    // sometimes reads first then inserts, rendering
     var myobj = { name: "Company Inc", address: "Highway 37" };
     const client = new MongoClient(uri, { useNewUrlParser: true , useUnifiedTopology: true});
     client.connect(err => {
