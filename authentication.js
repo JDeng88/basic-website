@@ -7,5 +7,5 @@ const checkAuth = function(req, res, next){
 }
 
 module.exports = {
-    checkAuth : checkAuth
+    checkAuth : checkAuth,
 };

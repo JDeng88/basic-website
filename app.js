@@ -1,6 +1,6 @@
 /*
  *  Date Created: July 12, 2020
- *  Author: Justin Deng, Yuxuan Zou, Darren Wang
+ *  Author: Justin Deng, Yuxuan Zou, Darren Wang but mostly Darren
  *  Description: Login Page powered by MongoDB and incorporates password encryption
  */
 
@@ -17,5 +17,5 @@ app.use(expressSession({secret : '/dashboard',
 app.listen(3000);       // hosted on port 3000
 
 // combine backend for account setup information with app.js
-const router = require('./account.js'); 
-app.use(router);
+const account_router = require('./account.js'); 
+app.use(account_router);
