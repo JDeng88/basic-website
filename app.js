@@ -14,8 +14,8 @@ const MongoClient = require('mongodb').MongoClient;         // returns a MongoDB
 const checkAuth = require('./authentication.js').checkAuth; // custom method from authentication.js for authentication
 
 // Login information for MongoDB
-const MONGOD_USER = "madproductive";
-const MONGOD_PWD = "wewillpushforward";
+const MONGOD_USER = "xxxxx";
+const MONGOD_PWD = "xxxxx";
 var DB_NAME = "test"; // databse name
 var uri = "mongodb+srv://"+MONGOD_USER+":"+MONGOD_PWD+
             "@cluster0.jd51y.mongodb.net/"+DB_NAME+"?retryWrites=true&w=majority";
