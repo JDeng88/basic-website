@@ -16,8 +16,8 @@ const checkAuth = require('./authentication.js').checkAuth; // custom method fro
 // Login information for MongoDB
 const MONGOD_USER = "madproductive";
 const MONGOD_PWD = "wewillpushforward";
-const DB_NAME = "test";
-const uri = "mongodb+srv://"+MONGOD_USER+":"+MONGOD_PWD+
+var DB_NAME = "test"; // databse name
+var uri = "mongodb+srv://"+MONGOD_USER+":"+MONGOD_PWD+
             "@cluster0.jd51y.mongodb.net/"+DB_NAME+"?retryWrites=true&w=majority";
 
 
