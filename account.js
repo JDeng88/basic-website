@@ -8,8 +8,8 @@ const validator = require("email-validator");               // validate whether 
 const saltRounds = 10;                                      // for encryption (the higher the better the security is)
 
 // Login information for MongoDB
-const MONGOD_USER = "madproductive";
-const MONGOD_PWD = "djyuck123";
+const MONGOD_USER = "xxxxx";
+const MONGOD_PWD = "xxxxxx";
 var DB_NAME_LOGIN = "login"; // database name
 var uri = "mongodb+srv://"+MONGOD_USER+":"+MONGOD_PWD+
             "@cluster0.jd51y.mongodb.net/"+DB_NAME_LOGIN+"?retryWrites=true&w=majority";
