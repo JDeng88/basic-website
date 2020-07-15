@@ -9,16 +9,24 @@
 		<br><br>
 		<form align="middle" method="post" action="/login_form">
 			<label> Username: </label>
-			<input name="log_user" type="text" placeholder="e.g LostRaven1588">
+			<input name="log_user" type="text" placeholder="LostRaven1588">
 			<br><br>
 			<label> Password: </label>
 			<input name="log_pwd" type="password">
 			<br><br>
 			<input type="submit" value="Enter">
-		</form>
+		</form> 
 		<br>
 		<div align="middle">
 			<input onclick="location.href = '/register';" type="submit" value="Register">
+		</div>
+		<br>	
+		<form align="middle" method="post" action="/connect_form">
+			<input name="connect" type="submit" value="Connect">
+		</form>
+		<br>	
+		<div align="middle">
+			<input onclick="location.href = '/forgot';" type="submit" value="Forgot">
 		</div>	
 		<script src="login.js"></script>
 	</body>

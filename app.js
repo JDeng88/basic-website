@@ -1,47 +1,21 @@
-const express = require('express'); // returns a method using express
-const app = express();              // gets an express object from the mthod
-const path = require('path');       // provides path functions
-const expressSession = require('express-session');  // allows create sessions, cookies
-const bodyParser = require('body-parser');          // allows to retrieve information from html items
+/*
+ *  Date Created: July 12, 2020
+ *  Author: Justin Deng, Yuxuan Zou, Darren Wang but mostly Darren
+ *  Description: Login Page powered by MongoDB and incorporates password encryption
+ */
 
-const checkAuth = require('./authentication.js').checkAuth;
+const express = require('express');                         // returns a method using express
+const app = express();                                      // gets an express object from the mthod
+const expressSession = require('express-session');          // allows create sessions, cookies
+const bodyParser = require('body-parser');                  // allows to retrieve information from html items
 
 app.use(bodyParser.urlencoded({ extended: true })); 
-app.use(expressSession({secret: '/dashboard', saveUninitialized: true, resave: false}));
-app.listen(3000);
+// Set dashboard to only be accessed if authorized
+app.use(expressSession({secret : '/dashboard', 
+                        saveUninitialized: true, 
+                        resave : false})); 
+app.listen(3000);       // hosted on port 3000
 
-// temp username and password for testing
-var realUser;
-var realPwd;
-
-// GET REQUESTS, Linking html to pages
-app.get('/', function(req,res){
-    if (!req.session.user_id) res.sendFile(path.join(__dirname+'/static/login.html'));
-    else res.redirect('/dashboard');
-});
-
-app.get('/dashboard', checkAuth, function(req,res){
-    res.sendFile(path.join(__dirname+'/static/dashboard.html'));
-});
-
-app.get('/register', function(req,res){
-    res.sendFile(path.join(__dirname+'/static/register.html'));
-});
-
-// POST REQUESTS
-app.post('/login_form', function(req,res){
-    var user = req.body.log_user;
-    var pwd = req.body.log_pwd;
-    if(user === realUser && pwd === realPwd){
-        req.session.user_id = user;
-        req.session.cookie.maxAge = 3600000 * 6;
-        res.redirect('/dashboard');
-    }
-    else res.redirect('/');
-});
-
-app.post('/register_form', function(req,res){
-    realUser = req.body.reg_user;
-    realPwd = req.body.reg_pwd;
-    res.redirect('/');
-});
+// combine backend for account setup information with app.js
+const account_router = require('./account.js'); 
+app.use(account_router);
